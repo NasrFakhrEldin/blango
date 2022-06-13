@@ -24,6 +24,9 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+      return self.content
+
 class Post(models.Model):
   title = models.TextField(max_length = 100)
   slug = models.SlugField()
