@@ -1,4 +1,12 @@
 {% load blog_extras crispy_forms_tags %}
+{% if post.author.profile %}
+    {% row %}
+        {% col %}
+            <h4>About the author</h4>
+            <p>{{ post.author.profile.bio }}</p>
+        {% endcol %}
+    {% endrow %}
+{% endif %}
 <h4>Comments</h4>
 {% for comment in post.comments.all %}
 {% row "border-top pt-2" %}
