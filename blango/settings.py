@@ -159,7 +159,9 @@ class Dev(Configuration):
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
     INTERNAL_IPS = ["192.168.11.179"]
-
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    ACCOUNT_ACTIVATION_DAYS = 7
+    # REGISTRATION_OPEN = False
 
 class Prod(Dev):
     DEBUG = False
