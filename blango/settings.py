@@ -49,6 +49,7 @@ class Dev(Configuration):
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites', # add
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -59,6 +60,12 @@ class Dev(Configuration):
 
     # apps
     'blog',
+
+    # Allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     ]
 
@@ -158,11 +165,19 @@ class Dev(Configuration):
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+    # Add
     INTERNAL_IPS = ["192.168.11.179"]
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     ACCOUNT_ACTIVATION_DAYS = 7
     # REGISTRATION_OPEN = False
+    # Allauth
+    SITE_ID = 1
 
+    ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
+    
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
