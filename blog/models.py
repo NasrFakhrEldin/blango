@@ -35,7 +35,7 @@ class Comment(models.Model):
 
 class Post(models.Model):
   title = models.TextField(max_length = 100)
-  slug = models.SlugField()
+  slug = models.SlugField(unique=True)
   summary = models.TextField(max_length = 500)
   content = models.TextField()
 
