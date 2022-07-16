@@ -12,9 +12,10 @@ class AuthorProfile(models.Model):
   bio = models.TextField()
   def __str__(self):
     return f"{self.__class__.__name__} object for {self.user}"
+
+
 class Tag(models.Model):
   value = models.TextField(max_length = 100)
-
 
   def __str__(self):
     return self.value

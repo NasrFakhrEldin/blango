@@ -3,6 +3,7 @@ from blog.models import Comment
 # crispy
 from crispy_forms.layout import Submit
 from crispy_forms.helper import FormHelper
+
 class CommentForm(forms.ModelForm):
   class Meta:
     model = Comment
