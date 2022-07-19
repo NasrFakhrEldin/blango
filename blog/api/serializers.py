@@ -50,7 +50,7 @@ class PostSerializer(serializers.ModelSerializer):
 #             raise serializers.ValidationError("domain must be example.com")
 #         return value
         
-#         def validate(self, data):
-#             if (not data.get("first_name")) != (not data.get("last_name")):
-#                 raise serializers.ValidationError("first_name and last_name must be provided together")
-#             return data
+#     def validate(self, data):
+#         if (not data.get("first_name")) != (not data.get("last_name")):
+#             raise serializers.ValidationError("first_name and last_name must be provided together")
+#         return data
