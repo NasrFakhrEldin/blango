@@ -16,7 +16,10 @@ class PostSerializer(serializers.ModelSerializer):
 #         del data["autogenerate_slug"]
 #         return data
 
-        
+
+# def is_capitalized(value):
+#     if value[0].lower() == value[0]:
+#         raise serializers.ValidationError("Value must be capitalized") 
 
 # class UserSerializer(serializers.Serializer):
 #     username = serializers.CharField()
