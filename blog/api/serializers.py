@@ -1,7 +1,16 @@
 from rest_framework import serializers
-from blog.models import Post
+from blog.models import Post, Tag
+from blango_auth.models import User
 
 class PostSerializer(serializers.ModelSerializer):
+    tags = serializers.SlugRelatedField(
+        slug_field="value", many=True, queryset=Tag.objects.all()
+    )
+
+    author = serializers.HyperlinkedRelatedField(
+        queryset=User.objects.all(), view_name="api_user_detail", lookup_field="email"
+    )
+
     class Meta:
         model = Post
         fields = "__all__"
@@ -57,3 +66,43 @@ class PostSerializer(serializers.ModelSerializer):
 #         if (not data.get("first_name")) != (not data.get("last_name")):
 #             raise serializers.ValidationError("first_name and last_name must be provided together")
 #         return data
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name", "email"]
+
+
+
+
+
+
+'''
+    if we wanted to allow access to Posts for a particular author,
+    we might have a URL path
+    like /api/v1/<author_email>/posts/<post_id>. In this case,
+    we’d need to provide both the author’s email and a Post ID
+    to generate the URL.
+'''
+# https://www.django-rest-framework.org/api-guide/relations/#custom-hyperlinked-fields
+
+# from rest_framework.reverse import reverse
+
+# class CustomerHyperlink(serializers.HyperlinkedRelatedField):
+#     # We define these as class attributes, so we don't need to pass them as arguments.
+#     view_name = 'post-detail'
+#     queryset = Post.objects.all()
+
+#     def get_url(self, obj, view_name, request, format):
+#         url_kwargs = {
+#             'author_email': obj.User.email,
+#             'post_pk': obj.pk
+#         }
+#         return reverse(view_name, kwargs=url_kwargs, request=request, format=format)
+
+#     def get_object(self, view_name, view_args, view_kwargs):
+#         lookup_kwargs = {
+#            'author__email': view_kwargs['author_email'],
+#            'pk': view_kwargs['post_pk']
+#         }
+#         return self.get_queryset().get(**lookup_kwargs)
