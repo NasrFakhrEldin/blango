@@ -148,16 +148,3 @@ class TagField(serializers.SlugRelatedField):
 #            'pk': view_kwargs['post_pk']
 #         }
 #         return self.get_queryset().get(**lookup_kwargs)
-
-class CommentSerializer(serializers.ModelSerializer):
-    creator = UserSerializer(read_only=True)
-
-    class Meta:
-        model = Comment
-        fields = ["creator", "content", "modified_at", "created_at"]
-        readonly = ["modified_at", "created_at"]
-
-
-
-class PostDetailSerializer(PostSerializer):
-    comments = CommentSerializer(many=True)
