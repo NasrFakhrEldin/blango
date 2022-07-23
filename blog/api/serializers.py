@@ -45,11 +45,18 @@ from blango_auth.models import User
 #             raise serializers.ValidationError("first_name and last_name must be provided together")
 #         return data
 
+class TagField(serializers.SlugRelatedField):
+    def to_internal_value(self, data):
+        try:
+            return self.get_queryset().get_or_create(value=data.lower())[0]
+        except (TypeError, ValueError):
+            self.fail(f"Tag value {data} is invalid")
+
 
 
 
 class PostSerializer(serializers.ModelSerializer):
-    tags = serializers.SlugRelatedField(
+    tags = TagField(
         slug_field="value", many=True, queryset=Tag.objects.all()
     )
 
@@ -107,13 +114,6 @@ class PostDetailSerializer(PostSerializer):
 
         return instance
 
-
-class TagField(serializers.SlugRelatedField):
-    def to_internal_value(self, data):
-        try:
-            return self.get_queryset().get_or_create(value=data.lower())[0]
-        except (TypeError, ValueError):
-            self.fail(f"Tag value {data} is invalid")
 
 
 
