@@ -5,7 +5,7 @@ from blog.models import Post
 from blog.api.permissions import AuthorModifyOrReadOnly, IsAdminUserForObject
 
 from blango_auth.models import User
-from blog.api.serializers import PostSerializer, UserSerializer
+from blog.api.serializers import PostSerializer, UserSerializer, PostDetailSerializer
 
 
 class PostList(generics.ListCreateAPIView):
