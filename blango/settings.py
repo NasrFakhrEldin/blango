@@ -202,3 +202,7 @@ class Dev(Configuration):
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
+
+
+# References
+# https://drf-yasg.readthedocs.io/en/stable/

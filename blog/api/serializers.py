@@ -45,6 +45,13 @@ from blango_auth.models import User
 #             raise serializers.ValidationError("first_name and last_name must be provided together")
 #         return data
 
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = "__all__"
+
+
+
 class TagField(serializers.SlugRelatedField):
     def to_internal_value(self, data):
         try:
