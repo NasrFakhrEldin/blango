@@ -54,6 +54,9 @@ class Dev(Configuration):
     'crispy_forms',
     'crispy_bootstrap5',
     'debug_toolbar',
+    'drf_yasg',
+
+    
     'rest_framework', # add
     'rest_framework.authtoken', # add
     # AUTH_USER_MODEL
@@ -116,6 +119,13 @@ class Dev(Configuration):
         ],
     }
 
+    SWAGGER_SETTINGS = {
+        "SECURITY_DEFINITIONS": {
+            "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+            "Basic": {"type": "basic"},
+        }
+    }
+    
     # Database
     # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
