@@ -51,14 +51,16 @@ class Dev(Configuration):
     'django.contrib.messages',
     'django.contrib.sites', # add
     'django.contrib.staticfiles',
-    'crispy_forms',
-    'crispy_bootstrap5',
-    'debug_toolbar',
-    'drf_yasg',
+    'crispy_forms', #add
+    'crispy_bootstrap5', #add
+    'debug_toolbar', #add
+    'drf_yasg', #add
 
     
     'rest_framework', # add
     'rest_framework.authtoken', # add
+    'django_filters', #add
+
     # AUTH_USER_MODEL
     'blango_auth',
 
@@ -129,6 +131,12 @@ class Dev(Configuration):
             "user_sustained": "5000/day",
             "user_burst": "100/minute",
         },
+        "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+        "PAGE_SIZE": 100,
+        "DEFAULT_FILTER_BACKENDS": [
+            "django_filters.rest_framework.DjangoFilterBackend",
+            "rest_framework.filters.OrderingFilter"
+        ],
     }
 
     SWAGGER_SETTINGS = {
