@@ -62,7 +62,7 @@ class Post(models.Model):
   hero_image = VersatileImageField(
         upload_to="hero_images", ppoi_field="ppoi", null=True, blank=True
     )
-  ppoi = PPOIField(null=True, blank=True)
+  ppoi = PPOIField(null=True, blank=True) # primary point of interest
 
   def __str__(self):
     return self.title
