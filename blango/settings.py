@@ -52,10 +52,13 @@ class Dev(Configuration):
     'django.contrib.messages',
     'django.contrib.sites', # add
     'django.contrib.staticfiles',
+    
+    
     'crispy_forms', #add
     'crispy_bootstrap5', #add
     'debug_toolbar', #add
     'drf_yasg', #add
+    'versatileimagefield', #add
 
     
     'rest_framework', # add
@@ -209,6 +212,9 @@ class Dev(Configuration):
 
     STATIC_URL = '/static/'
 
+    MEDIA_ROOT = BASE_DIR / "media"
+    MEDIA_URL = "/media/"
+
     # Default primary key field type
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -233,3 +239,11 @@ class Prod(Dev):
 
 # References
 # https://drf-yasg.readthedocs.io/en/stable/
+# https://django-versatileimagefield.readthedocs.io/en/latest/index.html
+'''
+you will need to install some additional modules. On macOS,
+you'll need to install libmagic, for example, with Homebrew:
+brew install libmagic
+On Windows, you’ll have to install python-magic-bin:
+pip install python-magic-bin==0.4.1
+'''
