@@ -57,3 +57,6 @@ def post_detail(request, slug):
     "comment_form" : comment_form,
 
   })
+
+def post_table(request):
+  return render(request, "blog/post-table.html")

@@ -42,7 +42,7 @@ urlpatterns = [
     
     path('', blog.views.index),
     path('post/<slug>/', blog.views.post_detail, name = "blog-post-detail"),
-
+    path("post-table/", blog.views.post_table, name="blog-post-table"),
 
     #API
     # path("api/v1/", include("blog.api_urls")), # MOVED
