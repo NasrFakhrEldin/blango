@@ -40,8 +40,33 @@ class DelayedGreeter extends Greeter{
   }
 }
 
-const dg2 = new DelayedGreeter('Patchy 2 Seconds')
-dg2.greet()
+// const dg2 = new DelayedGreeter('Patchy 2 Seconds')
+// dg2.greet()
 
-const dg1 = new DelayedGreeter('Patchy 1 Second', 1000)
-dg1.greet()
+// const dg1 = new DelayedGreeter('Patchy 1 Second', 1000)
+// dg1.greet()
+
+
+function resolvedCallback(data){
+  console.log('Resolved with data '+ data)
+}
+function rejectedCallback(message){
+  console.log('Rejected with message '+message)
+}
+
+const lazyAdd = function(a, b){
+  const doAdd = (resolve, reject)=>{
+    if(typeof a !== 'number' || typeof b !== 'number'){
+      return reject("a and b must be numbers")
+    }else{
+      const sum = a+b
+      return resolve(sum)
+    }
+  }
+  return new Promise(doAdd)
+}
+
+const p =lazyAdd(3, 4)
+p.then(resolvedCallback, rejectedCallback)
+
+lazyAdd("n", "a").then(resolvedCallback, rejectedCallback)
